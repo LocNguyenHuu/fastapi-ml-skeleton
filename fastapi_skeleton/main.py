@@ -6,6 +6,14 @@ from fastapi_skeleton.core.event_handlers import start_app_handler, stop_app_han
 
 
 def get_app() -> FastAPI:
+    """
+    Returns a FastAPI application instance.
+
+    Returns:
+        FastAPI: The FastAPI application instance.
+    """
+
+
     fast_app = FastAPI(title=APP_NAME, version=APP_VERSION, debug=IS_DEBUG)
     fast_app.include_router(api_router, prefix=API_PREFIX)
 

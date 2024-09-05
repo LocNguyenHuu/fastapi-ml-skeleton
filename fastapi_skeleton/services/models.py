@@ -8,6 +8,34 @@ from fastapi_skeleton.models.prediction import HousePredictionResult
 
 
 class HousePriceModel:
+    """
+    A class representing a house price prediction model.
+
+    Attributes:
+        RESULT_UNIT_FACTOR (int): The factor used to convert the prediction result to a human-readable unit.
+        path (str): The path to the saved model file.
+        model: The loaded machine learning model.
+
+    Methods:
+        __init__(self, path: str) -> None:
+            Initializes the HousePriceModel object.
+
+        _load_local_model(self) -> None:
+            Loads the machine learning model from the specified path.
+
+        _pre_process(self, payload: HousePredictionPayload) -> np.ndarray:
+            Pre-processes the input payload for prediction.
+
+        _post_process(self, prediction: np.ndarray) -> HousePredictionResult:
+            Post-processes the prediction result.
+
+        _predict(self, features: np.ndarray) -> np.ndarray:
+            Performs the prediction using the loaded model.
+
+        predict(self, payload: HousePredictionPayload) -> HousePredictionResult:
+            Predicts the house price based on the input payload.
+
+    """
     RESULT_UNIT_FACTOR = 100
 
     def __init__(self, path: str) -> None:

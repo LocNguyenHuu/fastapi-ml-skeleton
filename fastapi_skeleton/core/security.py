@@ -12,6 +12,18 @@ api_key = APIKeyHeader(name="token", auto_error=False)
 
 
 def validate_request(header: Optional[str] = Security(api_key)) -> bool:
+    """
+    Validates the request by checking the provided header against the API key.
+
+    Args:
+        header (Optional[str]): The header containing the API key. Defaults to Security(api_key).
+
+    Returns:
+        bool: True if the request is valid, False otherwise.
+
+    Raises:
+        HTTPException: If the header is missing or the API key is incorrect.
+    """
     if header is None:
         raise HTTPException(
             status_code=HTTP_400_BAD_REQUEST, detail=NO_API_KEY, headers={}
